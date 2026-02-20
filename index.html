@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prana Studio | Yoga & Mindfulness Sibiu</title>
+<meta name="description" content="Studio de yoga și mindfulness în Sibiu. Practici autentice pentru corp și minte, într-un spațiu sacru de liniște.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Raleway:wght@300;400;500;600&family=Lora:ital,wght@0,400;1,400;1,500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<style>
+:root{
+  --sage:#7a9e7e;--sage-light:#a8c5a0;--sage-dark:#4a6e4e;
+  --amber:#c4956a;--amber-light:#e0b896;
+  --bg:#0a0e0a;--bg2:#0f140f;--bg3:#141a14;
+  --cream:#f2ede4;--text:#d8d0c4;--muted:#6a7a68;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Raleway',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;cursor:none}
+.cursor{position:fixed;width:10px;height:10px;background:transparent;border:1px solid var(--sage-light);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:transform 0.1s}
+.cursor-dot{position:fixed;width:4px;height:4px;background:var(--sage-light);border-radius:50%;pointer-events:none;z-index:10001;transform:translate(-50%,-50%)}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:28px 60px;display:flex;justify-content:space-between;align-items:center;transition:all 0.5s}
+nav.scrolled{background:rgba(10,14,10,0.97);backdrop-filter:blur(14px);padding:18px 60px;border-bottom:1px solid rgba(122,158,126,0.15)}
+.n-logo{font-family:'Cinzel',serif;font-size:1.4rem;letter-spacing:0.12em;color:var(--cream);text-decoration:none}
+.n-logo span{color:var(--sage-light)}
+.n-ul{display:flex;gap:40px;list-style:none}
+.n-ul a{color:var(--text);text-decoration:none;font-size:0.72rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;opacity:0.72;transition:all 0.3s}
+.n-ul a:hover{opacity:1;color:var(--sage-light)}
+.n-join{padding:12px 28px;border:1px solid var(--sage);color:var(--sage-light);text-decoration:none;font-size:0.7rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;transition:all 0.3s;border-radius:100px}
+.n-join:hover{background:var(--sage);color:var(--bg)}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;text-align:center}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(122,158,126,0.08) 0%,transparent 70%),linear-gradient(180deg,#0a0e0a 0%,#0f140f 100%)}
+.hero-mandala{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80vmin;height:80vmin;opacity:0.04}
+.hero-mandala svg{width:100%;height:100%;animation:slowRotate 120s linear infinite}
+@keyframes slowRotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.hero-content{position:relative;z-index:2;max-width:700px;padding:0 40px}
+.hero-om{font-size:2rem;margin-bottom:24px;opacity:0.6;display:block}
+.hero-h1{font-family:'Cinzel',serif;font-size:clamp(2.8rem,6vw,5.5rem);line-height:1.15;letter-spacing:0.08em;margin-bottom:24px;color:var(--cream)}
+.hero-sub{font-family:'Lora',serif;font-style:italic;font-size:1.15rem;line-height:1.85;color:rgba(216,208,196,0.7);max-width:500px;margin:0 auto 48px}
+.hero-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-sage{padding:18px 44px;background:var(--sage-dark);color:var(--cream);text-decoration:none;font-size:0.76rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;border:1px solid var(--sage);border-radius:100px;transition:all 0.4s}
+.btn-sage:hover{background:var(--sage);transform:translateY(-2px)}
+.btn-sage-ghost{padding:18px 44px;border:1px solid rgba(255,255,255,0.15);color:var(--text);text-decoration:none;font-size:0.76rem;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;border-radius:100px;transition:all 0.3s}
+.btn-sage-ghost:hover{border-color:var(--sage-light);color:var(--sage-light)}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);font-size:0.62rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:10px}
+.scroll-dot{width:6px;height:6px;background:var(--sage);border-radius:50%;animation:bounce 2s ease infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+/* Philosophy */
+.philo{padding:120px 60px;background:var(--bg)}
+.philo-wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}
+.philo-visual{position:relative}
+.ph-circle{width:420px;height:420px;border-radius:50%;background:radial-gradient(ellipse,rgba(122,158,126,0.1) 0%,rgba(10,14,10,0) 70%);border:1px solid rgba(122,158,126,0.2);display:flex;align-items:center;justify-content:center;position:relative;margin:0 auto}
+.ph-inner{width:280px;height:280px;border-radius:50%;background:linear-gradient(135deg,#162016,#0a140a);border:1px solid rgba(122,158,126,0.3);display:flex;align-items:center;justify-content:center;font-size:6rem}
+.ph-orbit{position:absolute;width:100%;height:100%;border-radius:50%;border:1px dashed rgba(122,158,126,0.15);animation:slowRotate 60s linear infinite}
+.ph-dots{position:absolute;width:100%;height:100%}
+.ph-dot{position:absolute;width:8px;height:8px;background:var(--sage);border-radius:50%;top:50%;left:50%;transform-origin:0 0}
+.ph-dot:nth-child(1){transform:rotate(0deg) translateX(210px) translateY(-4px)}
+.ph-dot:nth-child(2){transform:rotate(120deg) translateX(210px) translateY(-4px)}
+.ph-dot:nth-child(3){transform:rotate(240deg) translateX(210px) translateY(-4px)}
+.philo-text{}
+.sec-tag{font-size:0.65rem;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--sage-light);display:block;margin-bottom:16px}
+.sec-h{font-family:'Cinzel',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);letter-spacing:0.06em;line-height:1.25;margin-bottom:24px;color:var(--cream)}
+.sep{width:40px;height:1px;background:var(--sage);margin:24px 0}
+.philo-text p{font-size:0.9rem;line-height:2;color:rgba(216,208,196,0.7);margin-bottom:18px}
+.pillar-list{display:flex;flex-direction:column;gap:16px;margin-top:32px}
+.pillar{display:flex;gap:16px;align-items:flex-start}
+.pil-icon{font-size:1.4rem;flex-shrink:0;margin-top:2px}
+.pil-title{font-family:'Cinzel',serif;font-size:0.85rem;letter-spacing:0.08em;color:var(--cream);margin-bottom:4px}
+.pil-desc{font-size:0.78rem;color:rgba(216,208,196,0.65);line-height:1.7}
+
+/* Classes */
+.classes{padding:120px 60px;background:var(--bg2)}
+.classes-wrap{max-width:1200px;margin:0 auto}
+.classes-head{text-align:center;margin-bottom:72px}
+.classes-head .sep{margin:20px auto}
+.classes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.class-card{background:var(--bg3);padding:48px 36px;border:1px solid rgba(122,158,126,0.1);position:relative;overflow:hidden;transition:all 0.4s;border-radius:4px}
+.class-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(122,158,126,0.08) 0%,transparent 70%);opacity:0;transition:opacity 0.4s}
+.class-card:hover::before{opacity:1}
+.class-card:hover{border-color:rgba(122,158,126,0.3);transform:translateY(-4px)}
+.class-level{display:inline-block;padding:5px 16px;background:rgba(122,158,126,0.15);border:1px solid rgba(122,158,126,0.3);border-radius:100px;font-size:0.62rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--sage-light);margin-bottom:20px}
+.class-icon{font-size:2.2rem;margin-bottom:20px;display:block}
+.class-name{font-family:'Cinzel',serif;font-size:1.3rem;letter-spacing:0.06em;color:var(--cream);margin-bottom:14px}
+.class-desc{font-size:0.82rem;line-height:1.9;color:rgba(216,208,196,0.65);margin-bottom:24px}
+.class-meta{display:flex;gap:20px;font-size:0.72rem;color:var(--muted);font-weight:500;letter-spacing:0.1em}
+.class-meta span{display:flex;align-items:center;gap:6px}
+
+/* Schedule */
+.schedule{padding:120px 60px;background:var(--bg)}
+.schedule-wrap{max-width:1100px;margin:0 auto}
+.sched-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-bottom:64px;align-items:end}
+.sched-head p{font-size:0.88rem;color:rgba(216,208,196,0.65);line-height:1.9}
+.sched-table{width:100%;border-collapse:collapse}
+.sched-table th{font-size:0.62rem;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--sage-light);padding:16px 20px;border-bottom:1px solid rgba(122,158,126,0.2);text-align:left}
+.sched-table td{padding:20px 20px;border-bottom:1px solid rgba(255,255,255,0.04);font-size:0.85rem;color:var(--text);transition:background 0.3s}
+.sched-table tr:hover td{background:rgba(122,158,126,0.04)}
+.tag-level{display:inline-block;padding:4px 12px;border-radius:100px;font-size:0.62rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase}
+.tag-level.incepator{background:rgba(122,158,126,0.15);color:var(--sage-light)}
+.tag-level.mediu{background:rgba(196,149,106,0.15);color:var(--amber-light)}
+.tag-level.avansat{background:rgba(196,30,58,0.12);color:#e8a0a0}
+.book-link{font-size:0.68rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--sage-light);text-decoration:none;opacity:0;transition:opacity 0.3s}
+.sched-table tr:hover .book-link{opacity:1}
+
+/* Teacher */
+.teacher{padding:120px 60px;background:var(--bg2)}
+.teacher-wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.3fr;gap:80px;align-items:center}
+.t-img-col{position:relative}
+.t-img{width:100%;aspect-ratio:3/4;background:radial-gradient(ellipse at center,rgba(122,158,126,0.15),rgba(10,14,10,0)),linear-gradient(160deg,#162016,#0a1010);display:flex;align-items:center;justify-content:center;font-size:6rem;border-radius:4px;border:1px solid rgba(122,158,126,0.15)}
+.t-badge{position:absolute;right:-24px;bottom:60px;background:var(--bg3);border:1px solid rgba(122,158,126,0.25);padding:20px 24px;border-radius:4px}
+.tb-num{font-family:'Cinzel',serif;font-size:2rem;color:var(--sage-light)}
+.tb-text{font-size:0.68rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.t-content{}
+.t-content .sep{margin:20px 0}
+.t-content p{font-size:0.9rem;line-height:2;color:rgba(216,208,196,0.7);margin-bottom:18px}
+.cert-list{display:flex;flex-direction:column;gap:12px;margin-top:32px}
+.cert{display:flex;align-items:center;gap:12px;font-size:0.8rem;color:rgba(216,208,196,0.75)}
+.cert-dot{width:6px;height:6px;background:var(--sage);border-radius:50%;flex-shrink:0}
+
+/* Testimonials */
+.testimonials{padding:120px 60px;background:var(--bg)}
+.test-wrap{max-width:1100px;margin:0 auto;text-align:center}
+.test-wrap .sep{margin:20px auto 64px}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.tc{background:var(--bg2);padding:44px 32px;border:1px solid rgba(122,158,126,0.08);text-align:left;transition:border-color 0.4s;position:relative}
+.tc:hover{border-color:rgba(122,158,126,0.25)}
+.tc-leaf{position:absolute;top:20px;right:20px;font-size:1.2rem;opacity:0.3}
+.tc-q{font-family:'Lora',serif;font-style:italic;font-size:1.08rem;line-height:1.85;margin-bottom:28px;color:var(--cream)}
+.tc-aut{display:flex;align-items:center;gap:14px}
+.tc-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--sage-dark),#1a2a1a);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:1rem;color:var(--cream);flex-shrink:0}
+.tc-name{font-size:0.82rem;font-weight:600}
+.tc-class{font-size:0.68rem;color:var(--sage-light);letter-spacing:0.1em;margin-top:3px}
+
+/* Contact */
+.contact{padding:120px 60px;background:var(--bg2)}
+.contact-wrap{max-width:1100px;margin:0 auto}
+.contact-head{text-align:center;margin-bottom:72px}
+.contact-head .sep{margin:20px auto}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+.c-left .c-h{font-family:'Cinzel',serif;font-size:1.6rem;letter-spacing:0.06em;color:var(--cream);margin-bottom:16px}
+.c-left p{font-size:0.88rem;color:rgba(216,208,196,0.65);line-height:1.9;margin-bottom:36px}
+.c-info{display:flex;flex-direction:column;gap:20px}
+.ci{display:flex;gap:14px;align-items:flex-start}
+.ci-icon{font-size:1.1rem;flex-shrink:0;margin-top:2px;opacity:0.7}
+.ci-label{font-size:0.62rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--sage-light);margin-bottom:4px}
+.ci-val{font-size:0.88rem}
+.c-form{display:flex;flex-direction:column;gap:14px}
+.cf{display:flex;flex-direction:column;gap:7px}
+.cf label{font-size:0.62rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+.cf input,.cf textarea,.cf select{background:var(--bg3);border:1px solid rgba(122,158,126,0.15);color:var(--text);padding:15px 18px;font-family:'Raleway',sans-serif;font-size:0.84rem;outline:none;transition:border-color 0.3s;-webkit-appearance:none;border-radius:2px}
+.cf input:focus,.cf textarea:focus,.cf select:focus{border-color:var(--sage)}
+.cf textarea{min-height:110px;resize:vertical}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+footer{background:var(--bg);border-top:1px solid rgba(122,158,126,0.12);padding:40px 60px;display:flex;justify-content:space-between;align-items:center}
+.fl{font-family:'Cinzel',serif;font-size:1.2rem;letter-spacing:0.1em;color:var(--cream);text-decoration:none}
+.fl span{color:var(--sage-light)}
+.fc{font-size:0.7rem;color:var(--muted)}
+.f-soc{display:flex;gap:20px}
+.f-soc a{color:var(--muted);text-decoration:none;font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.3s}
+.f-soc a:hover{color:var(--sage-light)}
+
+.reveal{opacity:0;transform:translateY(28px)}
+.reveal-l{opacity:0;transform:translateX(-36px)}
+.reveal-r{opacity:0;transform:translateX(36px)}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursor-dot"></div>
+
+<nav id="nav">
+  <a href="#" class="n-logo">Prana <span>Studio</span></a>
+  <ul class="n-ul">
+    <li><a href="#filozofie">Filozofie</a></li>
+    <li><a href="#clase">Clase</a></li>
+    <li><a href="#program">Program</a></li>
+    <li><a href="#instructor">Instructor</a></li>
+  </ul>
+  <a href="#contact" class="n-join">Începe acum</a>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-mandala">
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#7a9e7e" stroke-width="0.5">
+      <circle cx="200" cy="200" r="190"/>
+      <circle cx="200" cy="200" r="150"/>
+      <circle cx="200" cy="200" r="110"/>
+      <circle cx="200" cy="200" r="70"/>
+      <circle cx="200" cy="200" r="30"/>
+      <line x1="200" y1="10" x2="200" y2="390"/>
+      <line x1="10" y1="200" x2="390" y2="200"/>
+      <line x1="55" y1="55" x2="345" y2="345"/>
+      <line x1="345" y1="55" x2="55" y2="345"/>
+      <line x1="10" y1="130" x2="390" y2="270"/>
+      <line x1="10" y1="270" x2="390" y2="130"/>
+      <line x1="130" y1="10" x2="270" y2="390"/>
+      <line x1="270" y1="10" x2="130" y2="390"/>
+      <polygon points="200,70 230,160 320,160 250,215 275,305 200,255 125,305 150,215 80,160 170,160" opacity="0.5"/>
+    </svg>
+  </div>
+  <div class="hero-content">
+    <span class="hero-om">🪷</span>
+    <h1 class="hero-h1">Yoga pentru<br>suflet & corp</h1>
+    <p class="hero-sub">Un sanctuar al liniștii în inima Sibiului. Practici autentice de yoga și mindfulness pentru toate nivelele, conduse cu dragoste și înțelepciune.</p>
+    <div class="hero-ctas">
+      <a href="#clase" class="btn-sage">Explorează clasele</a>
+      <a href="#contact" class="btn-sage-ghost">Prima clasă gratuită</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-dot"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<section class="philo" id="filozofie">
+  <div class="philo-wrap">
+    <div class="philo-visual reveal-l">
+      <div class="ph-circle">
+        <div class="ph-orbit">
+          <div class="ph-dots">
+            <div class="ph-dot"></div>
+            <div class="ph-dot"></div>
+            <div class="ph-dot"></div>
+          </div>
+        </div>
+        <div class="ph-inner">🧘</div>
+      </div>
+    </div>
+    <div class="philo-text reveal-r">
+      <span class="sec-tag">Filozofia noastră</span>
+      <h2 class="sec-h">Yoga ca mod<br>de viață</h2>
+      <div class="sep"></div>
+      <p>La Prana Studio, credem că yoga depășește granițele covorașului. Este o filozofie vie, o cale de transformare care aduce echilibru, claritate și bucurie în fiecare aspect al vieții.</p>
+      <p>Abordăm fiecare student ca pe un individ unic, adaptând practica la nevoile, limitele și aspirațiile fiecăruia. Comunitatea noastră caldă primește cu brațele deschise pe oricine, indiferent de experiență.</p>
+      <div class="pillar-list">
+        <div class="pillar"><span class="pil-icon">🌱</span><div><div class="pil-title">Ahimsa — Non-violență</div><div class="pil-desc">Față de tine însuți și față de ceilalți. Practicăm cu blândețe și compasiune.</div></div></div>
+        <div class="pillar"><span class="pil-icon">🔥</span><div><div class="pil-title">Tapas — Disciplina focului</div><div class="pil-desc">Consistența transformă practica în obicei, și obiceiul în stil de viață.</div></div></div>
+        <div class="pillar"><span class="pil-icon">✨</span><div><div class="pil-title">Svadhyaya — Auto-cunoaștere</div><div class="pil-desc">Fiecare clasă este o oportunitate de a te cunoaște mai bine.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="classes" id="clase">
+  <div class="classes-wrap">
+    <div class="classes-head reveal">
+      <span class="sec-tag">Oferta noastră</span>
+      <h2 class="sec-h">Clase & Practici</h2>
+      <div class="sep"></div>
+      <p style="font-size:0.88rem;color:rgba(216,208,196,0.65);max-width:480px;margin:0 auto;line-height:1.9">Alegem un spectru larg de stiluri și intensități pentru a servi nevoile fiecărui practicant.</p>
+    </div>
+    <div class="classes-grid">
+      <div class="class-card reveal">
+        <div class="class-level">Toate nivelele</div>
+        <span class="class-icon">🌿</span>
+        <h3 class="class-name">Hatha Yoga</h3>
+        <p class="class-desc">Clasă tradițională de yoga cu accent pe posturi (asanas) și respirație (pranayama). Ideală pentru începători și cei care doresc o practică echilibrată.</p>
+        <div class="class-meta"><span>⏱ 75 min</span><span>👥 Max 12</span></div>
+      </div>
+      <div class="class-card reveal">
+        <div class="class-level">Intermediar</div>
+        <span class="class-icon">🌊</span>
+        <h3 class="class-name">Vinyasa Flow</h3>
+        <p class="class-desc">Secvențe fluide care conectează respirația cu mișcarea. Construiește forță, flexibilitate și prezență. Dinamică și energizantă.</p>
+        <div class="class-meta"><span>⏱ 60 min</span><span>👥 Max 10</span></div>
+      </div>
+      <div class="class-card reveal">
+        <div class="class-level">Avansat</div>
+        <span class="class-icon">🔥</span>
+        <h3 class="class-name">Ashtanga Yoga</h3>
+        <p class="class-desc">Serie fixă de posturi practicată în stil Mysore. Practică intensă care construiește putere, rezistență și disciplina minții.</p>
+        <div class="class-meta"><span>⏱ 90 min</span><span>👥 Max 8</span></div>
+      </div>
+      <div class="class-card reveal">
+        <div class="class-level">Toate nivelele</div>
+        <span class="class-icon">🌙</span>
+        <h3 class="class-name">Yin Yoga</h3>
+        <p class="class-desc">Posturi pasive menținute 3-5 minute pentru eliberarea profundă a țesutului conjunctiv. Ideală pentru recuperare și relaxare profundă.</p>
+        <div class="class-meta"><span>⏱ 75 min</span><span>👥 Max 12</span></div>
+      </div>
+      <div class="class-card reveal">
+        <div class="class-level">Începători</div>
+        <span class="class-icon">🪷</span>
+        <h3 class="class-name">Meditație & Pranayama</h3>
+        <p class="class-desc">Practici de respirație și meditație guidată pentru calm, concentrare și claritate mentală. Instrument esențial în viața modernă.</p>
+        <div class="class-meta"><span>⏱ 45 min</span><span>👥 Max 15</span></div>
+      </div>
+      <div class="class-card reveal">
+        <div class="class-level">Toate nivelele</div>
+        <span class="class-icon">☀️</span>
+        <h3 class="class-name">Yoga Nidra</h3>
+        <p class="class-desc">Tehnica somnului yogic — relaxare profundă în stare de semi-conștiență. Un tratament complet pentru stres și epuizare.</p>
+        <div class="class-meta"><span>⏱ 60 min</span><span>👥 Max 15</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="schedule" id="program">
+  <div class="schedule-wrap">
+    <div class="sched-head reveal">
+      <div>
+        <span class="sec-tag">Orar săptămânal</span>
+        <h2 class="sec-h">Program</h2>
+        <div class="sep"></div>
+      </div>
+      <p class="sched-head-p">Clase zilnice dimineața și seara, adaptate stilului de viață modern. Rezervați locul online cu cel puțin 2 ore înainte.</p>
+    </div>
+    <table class="sched-table reveal">
+      <thead>
+        <tr>
+          <th>Zi</th>
+          <th>Ora</th>
+          <th>Clasă</th>
+          <th>Instructor</th>
+          <th>Nivel</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Luni</td><td>07:30 — 09:00</td><td>Hatha Yoga</td><td>Elena Dumitrescu</td><td><span class="tag-level incepator">Toate nivelele</span></td><td><a href="#contact" class="book-link">Rezervă →</a></td></tr>
+        <tr><td>Luni</td><td>19:00 — 20:00</td><td>Vinyasa Flow</td><td>Elena Dumitrescu</td><td><span class="tag-level mediu">Intermediar</span></td><td><a href="#contact" class="book-link">Rezervă →</a></td></tr>
+        <tr><td>Marți</td><td>07:00 — 08:30</td><td>Ashtanga Mysore</td><td>Elena Dumitrescu</td><td><span class="tag-level avansat">Avansat</span></td><td><a href="#contact" class="book-link">Rezervă →</a></td></tr>
+        <tr><td>Miercuri</td><td>09:00 — 10:15</td><td>Yin Yoga</td><td>Elena Dumitrescu</td><td><span class="tag-level incepator">Toate nivelele</span></td><td><a href="#contact" class="book-link">Rezervă →</a></td></tr>
+        <tr><td>Joi</td><td>19:30 — 20:15</td><td>Meditație</td><td>Elena Dumitrescu</td><td><span class="tag-level incepator">Toate nivelele</span></td><td><a href="#contact" class="book-link">Rezervă →</a></td></tr>
+        <tr><td>Vineri</td><td>07:30 — 09:00</td><td>Hatha Yoga</td><td>Elena Dumitrescu</td><td><span class="tag-level incepator">Toate nivelele</span></td><td><a href="#contact" class="book-link">Rezervă →</a></td></tr>
+        <tr><td>Sâmbătă</td><td>10:00 — 11:00</td><td>Yoga Nidra</td><td>Elena Dumitrescu</td><td><span class="tag-level incepator">Toate nivelele</span></td><td><a href="#contact" class="book-link">Rezervă →</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="teacher" id="instructor">
+  <div class="teacher-wrap">
+    <div class="t-img-col reveal-l">
+      <div class="t-img">🧘‍♀️</div>
+      <div class="t-badge">
+        <div class="tb-num">500+</div>
+        <div class="tb-text">Ore pregătire RYT</div>
+      </div>
+    </div>
+    <div class="t-content reveal-r">
+      <span class="sec-tag">Instructorul tău</span>
+      <h2 class="sec-h">Elena<br>Dumitrescu</h2>
+      <div class="sep"></div>
+      <p>Elena practică yoga de 15 ani și predă de 8 ani în Sibiu. Formarea sa în India (Rishikesh) și studiile avansate cu profesori internaționali i-au conturat o abordare profundă, autentică și compasivă.</p>
+      <p>Abordarea ei îmbină înțelepciunea tradițiilor clasice yogice cu cunoștințele moderne despre anatomie și psihologie somatică. Fiecare clasă condusă de Elena este o călătorie de auto-descoperire.</p>
+      <div class="cert-list">
+        <div class="cert"><div class="cert-dot"></div>RYT 500 — Yoga Alliance Certified</div>
+        <div class="cert"><div class="cert-dot"></div>Formare în Rishikesh, India — Rishikesh Yoga Peeth</div>
+        <div class="cert"><div class="cert-dot"></div>Certificat Yin Yoga — Paul Grilley Method</div>
+        <div class="cert"><div class="cert-dot"></div>Certificat Yoga Nidra — iRest Institute</div>
+        <div class="cert"><div class="cert-dot"></div>Psihologie Somatică — nivel 2</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="testimoniale">
+  <div class="test-wrap">
+    <span class="sec-tag reveal">Comunitatea Prana</span>
+    <h2 class="sec-h reveal">Transformări reale</h2>
+    <div class="sep"></div>
+    <div class="test-grid">
+      <div class="tc reveal"><div class="tc-leaf">🌿</div><p class="tc-q">"Elena are un dar extraordinar de a face yoghesimte simplu și accesibil. Am venit cu dureri de spate cronice și după 3 luni de Yin Yoga mă simt complet schimbat. Îi mulțumesc din suflet!"</p><div class="tc-aut"><div class="tc-av">R</div><div><div class="tc-name">Radu Mihai</div><div class="tc-class">Yin Yoga — 3 luni</div></div></div></div>
+      <div class="tc reveal"><div class="tc-leaf">🌿</div><p class="tc-q">"Prana Studio este sanctuarul meu de liniște în mijlocul orașului. Clasa de Vinyasa Flow de luni seara îmi reîncarcă bateriile pentru întreaga săptămână. Comunitatea este minunată!"</p><div class="tc-aut"><div class="tc-av">A</div><div><div class="tc-name">Ana-Maria Stoian</div><div class="tc-class">Vinyasa Flow — 1 an</div></div></div></div>
+      <div class="tc reveal"><div class="tc-leaf">🌿</div><p class="tc-q">"Prima mea clasă de yoga în viață, la 52 de ani, și nu mai pot trăi fără! Elena m-a primit cu căldură și m-a ghidat cu răbdare. Nu există vârstă pentru yoga. Fac Hatha de 2 ani."</p><div class="tc-aut"><div class="tc-av">L</div><div><div class="tc-name">Lucia Popescu</div><div class="tc-class">Hatha Yoga — 2 ani</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-wrap">
+    <div class="contact-head reveal">
+      <span class="sec-tag">Prima clasă gratuită</span>
+      <h2 class="sec-h">Alăturați-vă<br>comunității</h2>
+      <div class="sep"></div>
+      <p style="font-size:0.88rem;color:rgba(216,208,196,0.65);max-width:460px;margin:0 auto;line-height:1.9">Prima clasă este gratuită pentru toți cei care ne contactează. Veniți fără echipament special — vă punem noi la dispoziție tot ce aveți nevoie.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="c-left reveal-l">
+        <h3 class="c-h">Unde ne găsiți</h3>
+        <p>Studioul nostru este un spațiu sacru și liniștit, amenajat cu atenție pentru o practică autentică și reconfortantă.</p>
+        <div class="c-info">
+          <div class="ci"><span class="ci-icon">📍</span><div><div class="ci-label">Adresă</div><div class="ci-val">Str. Bălcescu 22, et. 2, Sibiu</div></div></div>
+          <div class="ci"><span class="ci-icon">📱</span><div><div class="ci-label">Telefon</div><div class="ci-val">+40 741 xxx xxx</div></div></div>
+          <div class="ci"><span class="ci-icon">✉️</span><div><div class="ci-label">Email</div><div class="ci-val">namaste@pranastudio.ro</div></div></div>
+          <div class="ci"><span class="ci-icon">🕐</span><div><div class="ci-label">Studio deschis</div><div class="ci-val">Lun–Sâm conform orarului</div></div></div>
+        </div>
+      </div>
+      <form class="c-form reveal-r" onsubmit="return false">
+        <div class="cf-row">
+          <div class="cf"><label>Prenume</label><input type="text" placeholder="Elena"></div>
+          <div class="cf"><label>Telefon</label><input type="tel" placeholder="+40 7xx xxx xxx"></div>
+        </div>
+        <div class="cf"><label>Email</label><input type="email" placeholder="email@exemplu.ro"></div>
+        <div class="cf"><label>Clasă de interes</label>
+          <select>
+            <option>Hatha Yoga — Toate nivelele</option>
+            <option>Vinyasa Flow — Intermediar</option>
+            <option>Ashtanga — Avansat</option>
+            <option>Yin Yoga</option>
+            <option>Meditație & Pranayama</option>
+            <option>Yoga Nidra</option>
+            <option>Nu știu, vreau să vin la o clasă introductivă</option>
+          </select>
+        </div>
+        <div class="cf"><label>Experiență yoga anterioară</label>
+          <select>
+            <option>Niciuna — sunt la început</option>
+            <option>Câteva clase sporadice</option>
+            <option>Practică regulată 1-2 ani</option>
+            <option>Practică avansată 3+ ani</option>
+          </select>
+        </div>
+        <div class="cf"><label>Mesaj (opțional)</label><textarea placeholder="Orice altceva doriți să ne spuneți..."></textarea></div>
+        <button class="btn-sage" style="cursor:none;border:none;font-family:'Raleway',sans-serif;width:100%;border-radius:4px;padding:18px">Rezervă prima clasă gratuită 🌿</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="#" class="fl">Prana <span>Studio</span></a>
+  <div class="fc">© 2025 Prana Yoga Studio Sibiu. Namaste. 🙏</div>
+  <div class="f-soc"><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">YouTube</a></div>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const cur=document.getElementById('cursor'),dot=document.getElementById('cursor-dot');
+let mx=0,my=0,cx=0,cy=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  gsap.to(dot,{x:mx,y:my,duration:0.04});
+});
+function ac(){cx+=(mx-cx)*0.08;cy+=(my-cy)*0.08;gsap.set(cur,{x:cx,y:cy});requestAnimationFrame(ac)}ac();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>gsap.to(cur,{scale:2.5,opacity:0.5,duration:0.3}));
+  el.addEventListener('mouseleave',()=>gsap.to(cur,{scale:1,opacity:1,duration:0.3}));
+});
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>80));
+gsap.timeline({defaults:{ease:'power3.out'}})
+  .from('.hero-om',{opacity:0,scale:0.5,duration:0.8,delay:0.3})
+  .from('.hero-h1',{opacity:0,y:44,duration:1.1},'-=0.5')
+  .from('.hero-sub',{opacity:0,y:24,duration:0.9},'-=0.7')
+  .from('.hero-ctas',{opacity:0,y:16,duration:0.8},'-=0.6')
+  .from('.hero-mandala',{opacity:0,scale:0.7,duration:2},'-=2');
+gsap.utils.toArray('.reveal').forEach(el=>gsap.to(el,{opacity:1,y:0,duration:0.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}}));
+gsap.utils.toArray('.reveal-l').forEach(el=>gsap.to(el,{opacity:1,x:0,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 83%'}}));
+gsap.utils.toArray('.reveal-r').forEach(el=>gsap.to(el,{opacity:1,x:0,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 83%'}}));
+gsap.to('.hero-content',{y:-60,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+</script>
+</body>
+</html>
